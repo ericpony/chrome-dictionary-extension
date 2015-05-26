@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TJDict</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body data-spy="scroll" data-target="#dict_nav" data-offset="70">
+  <div class="github-fork-ribbon-wrapper right hidden-xs">
+    <div id="ribbon" class="github-fork-ribbon">
+    </div>
+  </div>
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header hidden-xs">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/index.html">TJDict</a>
+      </div>
+      <form class="navbar-form navbar-left" action="/index.html" role="search">
+        <div class="form-group">
+          <div class="input-group">
+            <input id="q" type="text" name="q" class="form-control" placeholder="請輸入單字" data-provide="typeahead" autocomplete="off">
+            <div class="input-group-btn">
+              <button id="tts" class="btn btn-default disabled" type="button"><span class="glyphicon glyphicon-volume-up"></span></button>
+              <button id="lang_dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+              <ul id="tts_list" class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="#" data-toggle="modal" data-target="#modal_setting" data-track-click="nav_setting"><span class="glyphicon glyphicon-cog"></span> 設定</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <nav id="dict_nav" class="navbar navbar-default navbar-static-top x-hidden-xs" role="navigation" data-spy="affix" data-offset-top="70">
+    <div class="container-fluid">
+	  <table class="nav navbar-nav" style="width:100%; text-align:center; margin-left:auto; margin-right:auto; font-size:1.5em;"><tr id="dict_nav_table"></tr></table>
+    <!--<ul id="dict_nav_ul" class="nav navbar-nav"></ul>-->
+    </div>
+  </nav>
+  <div id="main" class="container-fluid">
+    <div id="intro" class="row">
+      <div class="col-md-6" style="display:none">
+        <img src="img/banner.png" class="img-rounded img-responsive">
+      </div>
+      <div class="col-md-6">
+        <div class="page-header">
+          <img src="img/banner.jpg" class="img-rounded img-responsive">
+          <h1>使用方式</h1>
+        </div>
+        <ul>
+          <li>在網頁上 <code>Ctrl</code> + 滑鼠雙擊單字</li>
+          <li>在網頁上 <code>Ctrl</code> + <code>Alt</code> + 滑鼠拖曳反白單字</li>
+          <li>反白單字後右鍵</li>
+          <li>Mac 使用者請用 <code>Cmd</code> 取代 <code>Ctrl</code></li>
+        </ul>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <!-- modals BEGIN -->
+  <div id="modal_setting" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">關閉</span></button>
+          <h4 class="modal-title">設定</h4>
+        </div>
+
+        <div class="modal-body">
+          <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#setting_view" aria-controls="setting_view" role="tab" data-toggle="tab">顯示</a></li>
+              <li role="presentation"><a href="#setting_control" aria-controls="setting_control" role="tab" data-toggle="tab">操作</a></li>
+              <li role="presentation"><a href="#setting_tts" aria-controls="setting_tts" role="tab" data-toggle="tab">發音</a></li>
+              <li role="presentation"><a href="#setting_dictionary" aria-controls="setting_dictionary" role="tab" data-toggle="tab">字典</a></li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="setting_view">
+                <h4>顯示</h4>
+                <label class="radio-inline">
+                  <input type="radio" name="open_method" value="popup"> 跳出視窗
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="open_method" value="tab"> 分頁
+                </label>
+                <span class="help-block">查單字時彈出視窗的方式</span>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="setting_control">
+                <h4>關閉</h4>
+                <label class="radio-inline">
+                  <input type="radio" name="close_method" value="auto"> 自動
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="close_method" value="manual"> 手動
+                </label>
+                <h4>開啟</h4>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="hold_feature" value="true"> 長按一秒
+                  </label>
+                  <span class="help-block">適用於無滑鼠、鍵盤的平板電腦</span>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="setting_tts">
+                <h4>遇到中文字/漢字的預設讀音</h4>
+                <label class="radio-inline">
+                  <input type="radio" name="han_default_tts" value="zh"> 以中文發音
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="han_default_tts" value="ja"> 以日文發音
+                </label>
+                <span class="help-block">日文漢字與中文字編碼重疊，無法自動由程式判斷</span>
+                <h4>自動發音</h4>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="auto_tts" value="true"> 啟用
+                  </label>
+                  <span class="help-block">查字時是否自動發音</span>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="setting_dictionary">
+                <h4>啟用字典</h4>
+                <span class="help-block">拖曳可排序</span>
+                <div id="dict_checkboxes"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+          <button id="save" type="button" class="btn btn-primary">儲存</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+  <!-- modals END -->
+
+  <!-- init -->
+  <script src="/js/jquery-2.1.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/bloodhound.js"></script>
+  <script src="/js/bootstrap3-typeahead.min.js"></script>
+  <script src="/js/sortable.min.js"></script>
+  <script src="/js/global.js"></script>
+
+  <!-- dictionaries -->
+  <script src="/js/dictionaries/yahoo.js"></script>
+  <script src="/js/dictionaries/jukuu.js"></script>
+  <script src="/js/dictionaries/urban.js"></script>
+  <script src="/js/dictionaries/weblio.jp.js"></script>
+  <script src="/js/dictionaries/hjenglish.jp.js"></script>
+  <script src="/js/dictionaries/oxford.js"></script>
+  <script src="/js/dictionaries/voicetube.js"></script>
+
+  <!-- launch -->
+  <script src="/js/modules/options.js"></script>
+  <script src="/js/modules/search.js"></script>
+  <script src="/js/modules/typeahead.js"></script>
+  <script src="/js/modules/kk.js"></script>
+  <script src="/js/modules/tts.js"></script>
+  <script src="/js/modules/logger.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/content.js"></script>
+</body>
+</html>
