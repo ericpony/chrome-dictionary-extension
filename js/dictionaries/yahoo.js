@@ -19,7 +19,7 @@ DICTIONARIES.yahoo = {
           var symbols = pronu[0].innerText.match(/[A-Z][A-Z]\[[^\]]+\]/g);
           var filetype = 'ogg';
           pronu[0].innerText = '';
-          pronu.prepend($('<span>&nbsp;</span>'))
+          pronu
            .append('<a href="#" class="player-button" data-src="' + audio['sound_url_1'][1][filetype] + '">' + symbols[0] + '</a> ')
            .append('<a href="#" class="player-button" data-src="' + audio['sound_url_2'][1][filetype] + '">' + symbols[1] + '</a> ')
            .append('<a href="#" class="player-button" data-src="' + audio['sound_url_1'][0][filetype] + '"> '
