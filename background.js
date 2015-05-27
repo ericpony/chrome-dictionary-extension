@@ -11,7 +11,7 @@ function closeIfExist(){
 // 主功能 BEGIN
 function popWindow(query, left, top, pageURL){
   //closeIfExist();
-  var window_url = 'index.html?q=' + query + '&url=' + pageURL;
+  var window_url = 'index.html?q=' + query + (pageURL ? '&url=' + encodeURIComponent(pageURL) : '');
   if(WINDOW_ID != chrome.windows.WINDOW_ID_NONE) {
     chrome.tabs.update(TAB_ID, {url:window_url, active:true});
     return;

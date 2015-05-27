@@ -8,12 +8,18 @@ function getSelected() {
 
 function query(x, y){
   var queryString = getSelected().trim();
-  if(queryString)
-    chrome.runtime.sendMessage({
-      q: queryString,
-      url: location.href,
-      x: x, y: y
-    });
+  if(queryString) {
+    try {
+      chrome.runtime.sendMessage({
+        q: queryString,
+        //url: location.href,
+        x: x, y: y
+      });
+    }catch(e) {
+      if(/^Error connecting to extension/.test(e.message))
+        alert('請重新整理頁面後再試一次！');
+    }
+  }
 }
 
 // 觸發事件 BEGIN
