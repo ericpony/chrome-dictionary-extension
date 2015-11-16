@@ -23,12 +23,10 @@
       "16": "img/icon16.png",
       "48": "img/icon48.png"
    },
-//   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDxe7EOVTTF6Fxu3geDsJ37HIiJYs7sEVs06nKxugc2zZOsrlQ6/HLT2Wb3SkE6ljjA5rEUcuencJBTaQHdulQXK8Sle7qIY1U+4/pp03tFfKj9nYFOpN8I25hMQC+gubBW6K97SIrtjOlDqOgR6mxoL37loKkPAdeFblMViWzLBQIDAQAB",
    "manifest_version": 2,
-   "name": "TJDict 線上字典",
+   "name": "線上字典",
    "options_page": "index.html#options",
    "permissions": [ "\u003Call_urls>", "tabs", "storage", "notifications", "contextMenus", "tts"],
    "short_name": "TJDict",
-//   "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "1.15.1"
 }

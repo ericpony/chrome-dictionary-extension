@@ -3,11 +3,11 @@ DICTIONARIES.urban = {
   desc: '英英',
   langs: ['en'],
   title2: 'Urban Dictionary',
-  query: function(q, response){
+  query: function (q, response) {
     var self = this;
-    $.get('http://www.urbandictionary.com/define.php?term=' + q).done(function(data){
+    $.get('http://www.urbandictionary.com/define.php?term=' + q).done(function (data) {
       var result = '';
-      $(data).find('.def-panel[data-defid]').each(function(index, element){
+      $(data).find('.def-panel[data-defid]').each(function (index, element) {
         var word = $(element).find('.word').text();
         var meaning = $(element).find('.meaning').html();
         var example = $(element).find('.example').html();

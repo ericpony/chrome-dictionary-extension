@@ -3,22 +3,25 @@ DICTIONARIES.weblio = {
   desc: '日日',
   langs: ['ja'],
   title2: "Weblio",
-  query: function(q, response){
+  query: function (q, response) {
     var self = this;
-    $.get("http://www.weblio.jp/content/" + q).done(function(data){
+    $.get("http://www.weblio.jp/content/" + q).done(function (data) {
       var titles = $(data).find('.pbarTL');
       var contents = $(data).find('.kiji');
       var minSize = titles.size() < contents.size ? titles.size() : contents.size();
       var reg = /www\.weblio\.jp\/content\/(.*)/;
-      $(contents).find('a').each(function(key, value){
+      $(contents).find('a').each(function (key, value) {
         var match = reg.exec(value.href);
-        if(match)
+        if (match)
           value.href = 'index.html?q=' + match[1];
       });
       var result = "";
-      for(var i = 0; i < minSize; i++){
+      for (var i = 0; i < minSize; i++) {
         result += '<h3>' + titles[i].innerText + '</h3>';
-        result += contents[i].innerHTML;
+        if (i < minSize - 1)
+          result += contents[i].innerHTML;
+        else
+          result += contents[i].innerHTML.replace('document', '//');
       }
       response(self, result);
     });
