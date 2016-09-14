@@ -17,19 +17,30 @@ DICTIONARIES.yahoo = {
         eval('audio = ' + audio);
         if (audio['sound_url_1']) {
           var symbols = pronu[0].innerText.match(/[A-Z][A-Z]\[[^\]]+\]/g);
-          var filetype = 'ogg';
-
-          function audio_url (url, idx1, idx2) {
-            return (audio[url][idx1] || audio[url][idx2] || [])[filetype] || '';
+          var tags = ['sound_url_1', 'sound_url_2'];
+          var audios = [];
+          for (var k = 0; k < tags.length; k++) {
+            var tag = tags[k];
+            for (var i = 0; i < audio[tag].length; i++) {
+              var url = audio[tag][i]['mp3'];
+              if (url && !audios[url]) audios[url] = true;
+            }
           }
-
           pronu[0].innerText = '';
-          pronu
-            .append('<a href="#" class="player-button" data-src="' + audio_url('sound_url_1', 1, 0) + '">' + symbols[0] + '</a> ')
-            .append('<a href="#" class="player-button" data-src="' + audio_url('sound_url_2', 1, 0) + '">' + symbols[1] + '</a> ')
-            .append('<a href="#" class="player-button" data-src="' + audio_url('sound_url_1', 0, 1) + '"> '
-            + '<img src="http://png-2.findicons.com/files/icons/1434/ibook_os/16/sound_file.png" /></a>')
-            .append($('<audio id="player"><source type="audio/mpeg"></audio>'));
+          var american, british;
+          for (var url in audios) {
+            if (!american) {
+              american = url;
+            } else if (!british) {
+              british = url;
+            } else {
+              pronu.append('<a href="#" class="player-button" style="text-decoration: none" data-src="' + url + '"> '
+                + '<img src="http://png-2.findicons.com/files/icons/1434/ibook_os/16/sound_file.png" style="margin-left: 10px"/></a>')
+            }
+          }
+          pronu.prepend('<a href="#" class="player-button" data-src="' + american + '">' + symbols[0] + '</a> ')
+            .prepend('<a href="#" class="player-button" data-src="' + british + '">' + symbols[1] + '</a> ')
+            .prepend($('<audio id="player"><source type="audio/mpeg">Your browser does not support the audio tag.</audio>'));
         }
       }
       var res = $('<div>').append(pronu);
@@ -39,8 +50,9 @@ DICTIONARIES.yahoo = {
       var tr = $('<tr>');
 
       for (var i = 0, j = 1; ; j++) {
-        if (!entries[j] || i >= entry_names.length)
+        if (!entries[j] || i >= entry_names.length) {
           break;
+        }
         var title = entries[j].firstChild.firstChild.firstChild;
         if (title.id == entry_names[i]) {
           (function (id, entry) {
