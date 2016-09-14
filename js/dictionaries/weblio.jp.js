@@ -18,10 +18,7 @@ DICTIONARIES.weblio = {
       var result = "";
       for (var i = 0; i < minSize; i++) {
         result += '<h3>' + titles[i].innerText + '</h3>';
-        if (i < minSize - 1)
-          result += contents[i].innerHTML;
-        else
-          result += contents[i].innerHTML.replace('document', '//');
+        result += contents[i].innerHTML.replace('document', '//');
       }
       response(self, result);
     });
