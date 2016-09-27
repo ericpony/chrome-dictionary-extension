@@ -2,7 +2,7 @@ DICTIONARIES.jukuu = {
   title: "句酷雙語例句",
   desc: '英中、中英',
   langs: ['zh', 'en'],
-  title2: "<nobr>句酷</nobr> <nobr>雙語例句</nobr>",
+  text: "<nobr>句酷</nobr> <nobr>雙語例句</nobr>",
   query: function (q, response) {
     var self = this;
     $.get('http://www.jukuu.com/search.php?q=' + q).done(function (data) {

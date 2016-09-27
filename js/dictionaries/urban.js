@@ -2,7 +2,6 @@ DICTIONARIES.urban = {
   title: 'Urban Dictionary',
   desc: '英英',
   langs: ['en'],
-  text: 'Urban Dictionary',
   query: function (q, response) {
     var self = this;
     $.get('http://www.urbandictionary.com/define.php?term=' + q).done(function (data) {

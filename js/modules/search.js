@@ -22,7 +22,7 @@ var Search = {
             DICTIONARIES[dictName].query(queryString, function (dictionary, result, callback) {
               if (!result) return; // 沒結果就不要顯示內容與導覽列
               var id = '#dict_' + dictionary.id;
-              $('#dict_nav_li_' + dictionary.id).append('<a href="' + id + '">' + dictionary.title2 + '</a></li>');
+              $('#dict_nav_li_' + dictionary.id).append('<a href="' + id + '">' + (dictionary.text || dictionary.title) + '</a></li>');
               $(id).append('<div class="page-header" style="margin:0px"><h2>' + dictionary.title + '</h2></div>');
               $(id).append(result);
               if (callback && callback.constructor === Function.constructor) callback();
@@ -30,7 +30,9 @@ var Search = {
           }
         }
       });
-    } else $('#intro').show();
+    } else {
+      $('#intro').show();
+    }
   },
 
   matchedLanguages: function () {

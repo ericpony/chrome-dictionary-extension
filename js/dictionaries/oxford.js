@@ -2,7 +2,7 @@ DICTIONARIES.oxford = {
   title: '牛津字典',
   desc: '英英',
   langs: ['en'],
-  title2: '<nobr>牛津</nobr> <nobr>字典</nobr>',
+  text: '<nobr>牛津</nobr> <nobr>字典</nobr>',
   query: function (q, response) {
     var self = this;
     var result = '';
