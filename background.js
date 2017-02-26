@@ -22,7 +22,7 @@ function popWindow (query, left, top, pageURL) {
         case 'popup':
           chrome.windows.create({
             url: window_url,
-            type: 'detached_panel',
+            type: 'popup',
             left: left,
             top: top,
             width: data.width,
